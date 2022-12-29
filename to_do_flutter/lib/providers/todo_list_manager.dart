@@ -40,4 +40,19 @@ class TodoListManager extends StateNotifier<List<TodoModel>> {
   int oncompletedTodoCount() {
     return state.where((element) => !element.completed).length;
   }
+
+  void filtre(String filtreKey) {
+   
+    switch (filtreKey) {
+      case 'All':
+        state = state;
+        break;
+      case 'Active':
+        state = state.where((element) => !element.completed).toList();
+        break;
+      case 'Completed':
+        state = state.where((element) => element.completed).toList();
+        break;
+    }
+  }
 }

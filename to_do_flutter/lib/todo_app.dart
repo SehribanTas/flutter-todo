@@ -4,9 +4,6 @@ import 'package:to_do_flutter/providers/all_provider.dart';
 import 'package:to_do_flutter/widgets/title_widget.dart';
 import 'package:to_do_flutter/widgets/todo_list_item_widget.dart';
 import 'package:to_do_flutter/widgets/toolbar_widget.dart';
-import 'package:uuid/uuid.dart';
-
-import 'models/todo_model.dart';
 
 class TodoApp extends ConsumerWidget {
   TodoApp({Key? key}) : super(key: key);
@@ -15,7 +12,7 @@ class TodoApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var allTodos = ref.watch(todoListProvider);
+    var allTodos = ref.watch(filteredTodoList);
     return Scaffold(
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),

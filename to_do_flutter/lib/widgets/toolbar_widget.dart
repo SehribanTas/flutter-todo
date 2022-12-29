@@ -11,6 +11,8 @@ class ToolBarWidget extends ConsumerWidget {
         .watch(todoListProvider)
         .where((element) => !element.completed)
         .length;
+
+        final filter=ref.watch(todoListFilter);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -19,15 +21,23 @@ class ToolBarWidget extends ConsumerWidget {
         ),
         Tooltip(
           message: 'All Todos',
-          child: TextButton(onPressed: () {}, child: const Text('All')),
+          child: TextButton(onPressed: () {
+                               ref.read(todoListFilter.notifier).state= TodoListFilter.all;
+
+          }, child: const Text('All')),
         ),
         Tooltip(
           message: 'Only Uncompleted Todos',
-          child: TextButton(onPressed: () {}, child: const Text('Active')),
+          child: TextButton(onPressed: () {
+            ref.read(todoListFilter.notifier).state= TodoListFilter.active;
+          }, child: const Text('Active')),
         ),
         Tooltip(
           message: 'Only Completed Todos',
-          child: TextButton(onPressed: () {}, child: const Text('Completed')),
+          child: TextButton(onPressed: () {
+                         ref.read(todoListFilter.notifier).state= TodoListFilter.completed;
+
+          }, child: const Text('Completed')),
         ),
       ],
     );
